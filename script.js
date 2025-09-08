@@ -102,8 +102,6 @@ mainCanvas.addEventListener("wheel", (e) => {
 
     requestAnimationFrame(drawCanvas);
 });
-document.getElementById("zoomInBtn").onclick = () => applyZoom(1.2);
-document.getElementById("zoomOutBtn").onclick = () => applyZoom(0.8);
 document.getElementById("zoomResetBtn").onclick = resetZoom;
 
 window.addEventListener("resize", () => {
@@ -115,18 +113,6 @@ window.addEventListener("resize", () => {
     }
 });
 
-function applyZoom(amount) {
-    const rect = mainCanvas.getBoundingClientRect();
-    const center = {
-        x: rect.left + rect.width / 2,
-        y: rect.top + rect.height / 2,
-    };
-    const point = getCanvasPoint(center.x, center.y);
-    zoom *= amount;
-    panOffset.x = center.x - point.x * zoom;
-    panOffset.y = center.y - point.y * zoom;
-    requestAnimationFrame(drawCanvas);
-}
 
 function resetZoom() {
     if (!originalImageData) return;
