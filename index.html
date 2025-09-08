@@ -464,11 +464,17 @@
         // Zooming
         mainCanvas.addEventListener('wheel', (e) => {
             e.preventDefault();
+            const rect = mainCanvas.getBoundingClientRect();
             const zoomAmount = e.deltaY < 0 ? 1.1 : 0.9;
-            const point = getCanvasPoint(e.clientX, e.clientY);
+
+            const pointX = (e.clientX - rect.left - panOffset.x) / zoom;
+            const pointY = (e.clientY - rect.top - panOffset.y) / zoom;
+            
             zoom *= zoomAmount;
-            panOffset.x = e.clientX - point.x * zoom;
-            panOffset.y = e.clientY - point.y * zoom;
+            
+            panOffset.x = (e.clientX - rect.left) - pointX * zoom;
+            panOffset.y = (e.clientY - rect.top) - pointY * zoom;
+            
             requestAnimationFrame(drawCanvas);
         });
         document.getElementById('zoomInBtn').onclick = () => applyZoom(1.2);
