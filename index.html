@@ -32,6 +32,14 @@
                 </div>
 
                 <div class="tool-group">
+                    <label class="tool-label" for="gapSize">Gap Size</label>
+                    <div class="slider-container">
+                        <input type="range" id="gapSize" min="0" max="5" value="0">
+                        <span class="slider-value" id="gapSizeValue">0px</span>
+                    </div>
+                </div>
+
+                <div class="tool-group">
                     <label class="checkbox-group" for="floodFill">
                         <input type="checkbox" id="floodFill" checked>
                         <span class="checkbox-custom"></span>
@@ -51,9 +59,27 @@
                     <button class="btn-primary" onclick="downloadImage()">💾 Download</button>
                 </div>
 
-                <div class="tool-group removed-colors" id="removedColors" style="display: none;">
-                    <div class="tool-label">Removed Colors</div>
-                    <div class="color-chips" id="colorChips"></div>
+                <div class="tool-group tabs-container">
+                    <div class="tabs">
+                        <button class="tab-link active" onclick="openTab(event, 'remove')">Remove</button>
+                        <button class="tab-link" onclick="openTab(event, 'breakdown')">Breakdown</button>
+                        <button class="tab-link" onclick="openTab(event, 'replace')">Replace</button>
+                    </div>
+
+                    <div id="remove" class="tab-content active">
+                        <div class="tool-label">Removed Colors</div>
+                        <div class="color-chips" id="colorChips"></div>
+                    </div>
+
+                    <div id="breakdown" class="tab-content">
+                        <div class="tool-label">Color Breakdown</div>
+                        <div class="color-breakdown" id="colorBreakdown"></div>
+                    </div>
+                    
+                    <div id="replace" class="tab-content">
+                        <div class="tool-label">Replaced Colors</div>
+                        <div class="color-chips" id="replacedColors"></div>
+                    </div>
                 </div>
             </div>
 
@@ -76,6 +102,21 @@
             </div>
         </div>
     </div>
+
+    <div id="replaceModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeReplaceModal()">&times;</span>
+            <h2>Replace Color</h2>
+            <div class="color-to-replace">
+                <span>From:</span>
+                <div class="color-chip-preview" id="replaceFromPreview"></div>
+                <span id="replaceFromName"></span>
+            </div>
+            <p>To:</p>
+            <div class="color-palette" id="colorPalette"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -203,10 +203,42 @@ button:hover {
     box-shadow: 0 0 20px var(--accent-color);
 }
 
-.removed-colors {
+.tabs-container {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+.tabs {
+    display: flex;
+    margin-bottom: 15px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 5px;
+}
+.tab-link {
+    flex: 1;
+    padding: 8px 12px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: var(--primary-color);
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+.tab-link.active {
+    background: var(--accent-color);
+    color: #fff;
+    font-weight: bold;
+}
+.tab-content {
+    display: none;
     flex: 1;
     min-height: 0;
     overflow-y: auto;
+}
+.tab-content.active {
+    display: block;
 }
 .color-chips {
     display: flex;
@@ -346,4 +378,93 @@ input[type="file"] {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.color-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.breakdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+}
+.breakdown-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.breakdown-bar {
+    height: 10px;
+    background: var(--accent-color);
+    border-radius: 5px;
+}
+.breakdown-percent {
+    font-size: 0.8em;
+    opacity: 0.8;
+    min-width: 45px;
+    text-align: right;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+}
+.modal-content {
+    background: var(--bg-color);
+    margin: 10% auto;
+    padding: 25px;
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+}
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.color-to-replace {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+.color-palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+.color-chip-palette {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.color-chip-palette:hover {
+    background: var(--glass-bg);
+}
+.palette-name {
+    font-size: 0.9em;
 }
